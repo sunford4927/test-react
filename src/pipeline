@@ -15,11 +15,17 @@ pipeline {
         stage('build') {
             steps {
                 echo 'build'
+                dir('test-cicd-react') {
+                    sh "npm install"
+                    sh "CI=false npm run build"
+                    sh "ls -al"
+                }
             }
         }
         stage('deploy') {
             steps {
-                echo 'deploy'   
+                echo 'deploy'
+                sh "ls -al"   
             }
         }
     }
